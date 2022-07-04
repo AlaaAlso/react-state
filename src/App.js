@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Button } from "react-bootstrap";
+import React, { Component } from "react";
+import Counter from "./Components/Counter";
+import "./App.css";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+class App extends Component {
+  state = {
+    showandhide: false,
+  };
+  show = () => this.setState({ showandhide: !this.state.showandhide });
+  render() {
+    return (
+      <div className="App">
+        <Button
+          onClick={this.show}
+          variant="outline-dark"
+          className="buttonstyle"
         >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+          {this.state.showandhide ? "Hide" : "Show"}
+        </Button>
+        {this.state.showandhide === true && <Counter />}
+      </div>
+    );
+  }
 }
 
 export default App;
